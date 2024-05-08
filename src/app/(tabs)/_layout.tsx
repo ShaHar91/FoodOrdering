@@ -29,7 +29,6 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          headerShadowVisible:false,
           title: 'Tab One',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
