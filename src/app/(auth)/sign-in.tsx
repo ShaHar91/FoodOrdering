@@ -75,7 +75,7 @@ const SignInScreen = () => {
 
       <Button text={'Sign in'} onPress={onSubmit} />
 
-      <Link href={'/(auth)/sign-up'} asChild>
+      <Link href={'/sign-up'} asChild>
         <Text style={styles.textButton}>Create an account</Text>
       </Link>
     </View>

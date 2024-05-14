@@ -11,7 +11,8 @@ const index = () => {
             <Link href={'/(admin)'} asChild>
                 <Button text="Admin" />
             </Link>
-            <Link href={'/(auth)/sign-in'} asChild>
+            {/* (auth) segment of a path is optional. So sign-in works as is or with (auth) prepended to */}
+            <Link href={'/sign-in'} asChild>
                 <Button text="Auth" />
             </Link>
         </View>
