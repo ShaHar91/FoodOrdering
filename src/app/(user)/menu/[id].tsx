@@ -29,7 +29,7 @@ const ProductDetailsScreen = () => {
   }
 
   if (isLoading) return <ActivityIndicator />
-  if (error) return <Text>Failed to fetch product detail</Text>
+  if (error || !product) return <Text>Failed to fetch product detail</Text>
 
   return (
     <View style={styles.container}>

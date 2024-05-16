@@ -1,12 +1,12 @@
 import Colors from '@/src/constants/Colors';
 import { StyleSheet, Text, View, Image, Pressable, TouchableOpacity } from 'react-native';
-import { Order, OrderItem } from '../types';
+import { Order, OrderItem, Tables } from '../types';
 import { useSegments } from 'expo-router';
 import { defaultPizzaImage } from './ProductListItem';
 
 
 type OrderItemListItemProps = {
-    orderItem: OrderItem
+    orderItem: { products: Tables<'products'> } & Tables<'order_items'>
 }
 
 const OrderItemListItem = ({ orderItem }: OrderItemListItemProps) => {
