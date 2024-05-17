@@ -1,37 +1,25 @@
-import { View, Text, Image, StyleSheet, ViewStyle, TouchableOpacity, Pressable, ActivityIndicator } from 'react-native'
-import React, { useState } from 'react'
-import { Link, Stack, useLocalSearchParams, useRouter } from 'expo-router'
+import { View, Text, StyleSheet, Pressable, ActivityIndicator } from 'react-native'
+import React from 'react'
+import { Link, Stack, useLocalSearchParams } from 'expo-router'
 
-import products from '@/assets/data/products'
 import { defaultPizzaImage } from '@/src/components/ProductListItem'
 
-import Button from '@/src/components/Button'
-import { useCart } from '@/src/providers/CartProvider'
 import { PizzaSize } from '@/src/types'
 import { FontAwesome } from '@expo/vector-icons'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 import { useProduct } from '@/src/api/products'
+import RemoteImage from '@/src/components/RemoteImage'
 
 const sizes: PizzaSize[] = ['S', 'M', 'L', 'XL']
 
 const ProductDetailsScreen = () => {
   const { id: idString } = useLocalSearchParams()
   const id = parseFloat(typeof idString === 'string' ? idString : idString?.[0] ?? "")
-  const { addItem } = useCart()
-  const [selectedSize, setSelectedSize] = useState<PizzaSize>('M')
-  const router = useRouter()
 
   const { data: product, error, isLoading } = useProduct(id)
 
-  const addToCart = () => {
-    if (!product) return
-
-    addItem(product, selectedSize)
-    router.push('/cart')
-  }
-
   if (isLoading) return <ActivityIndicator />
-  if (error) return <Text>Failed to fetch product detail</Text>
+  if (error || !product) return <Text>Failed to fetch product detail</Text>
 
   return (
     <View style={styles.container}>
@@ -54,7 +42,7 @@ const ProductDetailsScreen = () => {
 
       <Stack.Screen options={{ title: product.name }} />
 
-      <Image source={{ uri: product.image || defaultPizzaImage }} style={styles.image} />
+      <RemoteImage path={product.image} fallback={defaultPizzaImage} style={styles.image} resizeMode='contain' />
 
       <Text style={styles.price}>${product.price}</Text>
     </View>

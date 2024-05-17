@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, Pressable, TouchableOpacity } from 'reac
 import { Order, OrderItem, Tables } from '../types';
 import { useSegments } from 'expo-router';
 import { defaultPizzaImage } from './ProductListItem';
+import RemoteImage from './RemoteImage';
 
 
 type OrderItemListItemProps = {
@@ -14,11 +15,7 @@ const OrderItemListItem = ({ orderItem }: OrderItemListItemProps) => {
 
     return (
         <View style={styles.container}>
-            <Image
-                style={styles.image}
-                resizeMode='contain'
-                source={{ uri: orderItem.products.image || defaultPizzaImage }}
-            />
+            <RemoteImage path={orderItem.products.image} fallback={defaultPizzaImage} style={styles.image} resizeMode='contain' />
 
             <View style={{ flex: 1 }}>
                 <Text style={styles.title}>{orderItem.products.name}</Text>

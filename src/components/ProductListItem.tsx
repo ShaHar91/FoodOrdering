@@ -2,6 +2,7 @@ import Colors from '@/src/constants/Colors';
 import { StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import { Link, useSegments } from 'expo-router';
 import { Tables } from '../database.types';
+import RemoteImage from './RemoteImage';
 
 type ProductListItemProps = {
     product: Tables<'products'>
@@ -15,7 +16,7 @@ const ProductListItem = ({ product }: ProductListItemProps) => {
     return (
         <Link href={`${segments[0]}/menu/${product.id}`} asChild>
             <TouchableOpacity style={styles.container}>
-                <Image source={{ uri: product.image || defaultPizzaImage }} style={styles.image} resizeMode='contain' />
+                <RemoteImage path={product.image} fallback={defaultPizzaImage} style={styles.image} resizeMode='contain' />
 
                 <Text style={styles.title}>{product.name}</Text>
                 <Text style={styles.price}>${product.price}</Text>
