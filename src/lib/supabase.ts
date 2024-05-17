@@ -15,9 +15,9 @@ const ExpoSecureStoreAdapter = {
     }
 }
 
-const supabaseUrl = "https://vkltfzigdgqyfrxkgenx.supabase.co"
+const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL || ""
 // It's "safe" to share this key
-const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrbHRmemlnZGdxeWZyeGtnZW54Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU2Nzg1MTMsImV4cCI6MjAzMTI1NDUxM30.PUsCZqjg52pgUp45FddII1GmazoM5ZSkTsIeJZ4Br3o"
+const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON || ""
 
 export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
     auth: {
