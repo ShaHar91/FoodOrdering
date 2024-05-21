@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, Image, Alert } from 'react-native'
+import { StyleSheet, Text, View, TextInput, Image, Alert, ScrollView } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import Button from '@/src/components/Button'
 import { defaultPizzaImage } from '@/src/components/ProductListItem'
@@ -158,7 +158,7 @@ const CreateProductScreen = () => {
       <Stack.Screen options={{ title: isUpdating ? 'Update Product' : 'Create Product' }} />
 
       <RemoteImage path={image} fallback={defaultPizzaImage} style={styles.image} resizeMode='contain' />
-      
+
       <Text style={styles.textButton} onPress={pickImage}>Select Image</Text>
 
       <Text style={styles.label}>Name</Text>

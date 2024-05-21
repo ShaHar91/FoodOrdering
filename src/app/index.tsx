@@ -8,19 +8,19 @@ import { supabase } from "../lib/supabase"
 const index = () => {
     const { session, loading, isAdmin } = useAuth()
 
-    if (loading) {
-        return <ActivityIndicator />
-    }
+    // if (loading) {
+    //     return <ActivityIndicator />
+    // }
 
     if (!session) {
         return <Redirect href={'/sign-in'} />
     }
 
-    if (!isAdmin) {
-        return <Redirect href={'/(user)'} />
-    }
+    // if (!isAdmin) {
+    //     return <Redirect href={'/(user)'} />
+    // }
 
-    // When logged in as an admin, they may want to see the app as a user, so leave this UI as is
+    // When logged in as an admin, they may want to see the app as a user, so leave this UI as
     return (
         <View style={{ flex: 1, justifyContent: 'center', padding: 10 }}>
             <Link href={'/(user)'} asChild>
